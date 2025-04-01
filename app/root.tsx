@@ -1,13 +1,19 @@
 import {
   Links,
+  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
+import NavBar from "~/components/NavBar";
+import { ThemeProvider } from "~/components/theme-provider"
 
 import "./tailwind.css";
+import { ScrollArea } from "./components/ui/scroll-area";
+import Footer from "./components/Footer";
+import { Separator } from "./components/ui/separator";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -22,7 +28,7 @@ export const links: LinksFunction = () => [
   },
 ];
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <head>
@@ -32,9 +38,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <ScrollArea className="h-screen">
+            <NavBar />
+            {children}
+            <ScrollRestoration />
+            <Scripts />
+            <Separator className="mt-12" />
+            <Footer />
+            <LiveReload />
+          </ScrollArea>
+        </ThemeProvider>
       </body>
     </html>
   );
