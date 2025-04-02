@@ -1,6 +1,5 @@
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -38,7 +37,7 @@ export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
         <Links />
       </head>
       <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ScrollArea className="h-screen">
             <NavBar />
             {children}
@@ -46,7 +45,6 @@ export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
             <Scripts />
             <Separator className="mt-12" />
             <Footer />
-            <LiveReload />
           </ScrollArea>
         </ThemeProvider>
       </body>

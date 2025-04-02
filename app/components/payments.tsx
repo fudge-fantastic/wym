@@ -1,69 +1,120 @@
-// eslint-disable-next-line import/no-unresolved
-import dollars from "/dollars.png";
-
 const cards = [
     {
-        img: dollars,
-        title: "Broke Rookie",
-        money: 100,
-        description: "Just getting starting? Welcome to the world of poor decisions!",
+      title: "Broke Rookie",
+      features: [
+        "A tiny money pit",
+        "No actual benefits",
+        "Beginners' money drain",
+        "Just a starting point",
+        "Start with a small amount",
+      ],
+      money: 100,
+      description: "Just getting started? Welcome to the world of poor decisions!",
     },
     {
-        img: dollars,
-        title: "Regretful Spender",
-        money: 1000,
-        description: "You know it's legit dumb, but you still do it..",
+      title: "Regretful Spender",
+      features: [
+        "Watch your cash vanish",
+        "Nothing extra included",
+        "Pay and regret instantly",
+        "Just throw it away",
+      ],
+      money: 1000,
+      description: "You know it's legit dumb, but you still do it..",
     },
     {
-        img: dollars,
-        title: "Financial Acrobat",
-        money: 10000,
-        description: "Juggling expenses like a circus pro. Absolute Legend.",
+      title: "Financial Acrobat",
+      features: [
+        "Multiple ways to waste cash",
+        "Real-time money burn alerts",
+        "Instant approval for more losses",
+        "Track your growing regrets",
+        "Risky business, guaranteed",
+      ],
+      money: 10000,
+      description: "Juggling expenses like a circus pro. Absolute Legend.",
     },
     {
-        img: dollars,
-        title: "Bankruptcy Enthusiast",
-        money: 100000,
-        description: "You don't spend money, you set it on fire.",
+      title: "Bankruptcy Enthusiast",
+      features: [
+        "All-in on wasted cash",
+        "Overpriced webinars on doing nothing",
+        "VIP access to your own downfall",
+        "Repo agent notifications included",
+        "Pawn shop perks for extra losses",
+      ],
+      money: 100000,
+      description: "You don't spend money, you set it on fire.",
     },
     {
-        img: dollars,
-        title: "Financial Frenzy",
-        money: 1000000,
-        description: "Tailor-made self-destruction! There's no stopping you now.",
+      title: "Financial Frenzy",
+      features: [
+        "Unlimited, mindless spending",
+        "Overdraft alerts to keep you aware",
+        "Monthly regret summaries",
+        "No hustle, just hassle",
+        "Therapy hotline? You’ll need it",
+      ],
+      money: 1000000,
+      description: "Tailor-made self-destruction! There's no stopping you now.",
     },
     {
-        img: dollars,
-        title: "Custom Plan",
-        money: 0,
-        description: "Congratulations! You've Reached New Heights of Financial Irresponsibility",
-    }
-];
-
+      title: "Custom Plan",
+      features: [
+        "Design your own disaster",
+        "Personalized cash burn",
+        "Unique failure guaranteed",
+        "Your money, your mess",
+      ],
+      money: 0,
+      description:
+        "Congratulations! You've Reached New Heights of Financial Irresponsibility",
+    },
+  ];
+  
 export default function Payments() {
     return (
-        <div className="max-w-5xl mx-auto">
-            <h1 className="text-center font-semibold text-3xl mb-7">
-                Available Payments
-            </h1>
-
-            {/* Cards Grid */}
-            <div className="flex flex-wrap justify-center gap-6">
-                {cards.map((card, index) => (
-                    <div key={index} className="border shadow-sm dark:shadow-none shadow-zinc-400 p-6 rounded-lg flex flex-col items-center w-[280px] sm:w-[300px] md:w-[320px]">
-                        <img src={card.img} alt={card.title} className="w-32 h-32 object-cover rounded-lg mb-4"/>
-                        <h2 className="text-2xl font-semibold text-center">{card.title}</h2>
-                        
-                        <p className="text-lg font-bold dark:text-green-500 text-green-600 mt-2">${card.money.toLocaleString()}</p>
-                        <p className="text-sm text-center text-muted-foreground mt-2">
-                            {card.description}
-                        </p>
-                        <button className="border py-2 px-4 rounded-lg mt-4 hover:bg-zinc-100 bg-zinc-50 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-sm">
-                            Get Wasted!
-                        </button>
-                    </div>
-                ))}
-            </div>
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        <div className="text-center">
+          <p className="text-xs text-gray-500 font-semibold uppercase tracking-wide">
+            _wasteyourmoney
+          </p>
+          <h1 className="text-3xl font-bold">
+            Pricing that grows with you
+          </h1>
         </div>
+  
+        {/* Cards Grid */}
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {cards.map((card, index) => (
+            <div
+              key={index}
+              className="flex flex-col border shadow-sm shadow-zinc-400 dark:shadow-none dark:bg-zinc-900 rounded-lg px-6 py-5"
+            >
+              <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+                {card.title}
+              </h2>
+              <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
+                {card.description}
+              </p>
+              <div className="mt-4 text-2xl font-bold text-green-500">
+                {card.money > 0 ? `$${card.money.toLocaleString()}` : "Custom"}
+              </div>
+              <ul className="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300 flex-1">
+                {card.features.map((feature, fIndex) => (
+                  <li key={fIndex} className="flex items-center">
+                    <span className="mr-2 text-green-500">&#10003;</span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <button className="mt-6 py-2 px-4 bg-zinc-200 rounded hover:bg-zinc-300 dark:bg-zinc-800 dark:hover:bg-zinc-700 transition-colors font-semibold text-sm">
+                Get wasted!
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
     );
-}
+  }
+  

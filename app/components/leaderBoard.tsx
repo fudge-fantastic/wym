@@ -10,16 +10,6 @@ import {
   PaginationPrevious,
 } from "~/components/ui/pagination";
 
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "~/components/ui/table";
-
 const USERS_PER_PAGE = 10;
 
 export default function LeaderBoard() {
@@ -27,37 +17,33 @@ export default function LeaderBoard() {
   const totalPages = Math.ceil(fakeUsers.length / USERS_PER_PAGE);
 
   const paginatedUsers = fakeUsers
-  .slice() // Create a copy
-  .sort((a, b) => b.moneyWasted - a.moneyWasted) // Sort by most wasted
-  .slice((currentPage - 1) * USERS_PER_PAGE, currentPage * USERS_PER_PAGE);
+    .slice()
+    .sort((a, b) => b.moneyWasted - a.moneyWasted)
+    .slice((currentPage - 1) * USERS_PER_PAGE, currentPage * USERS_PER_PAGE);
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
-      <h2 className="text-xl font-semibold text-center mb-4">Leaderboard</h2>
-
-      <Table>
-        <TableCaption>Latest users who wasted money</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[50px]">#</TableHead>
-            <TableHead>Username</TableHead>
-            <TableHead className="text-right">Money Wasted</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {paginatedUsers.map((user, index) => (
-            <TableRow key={user.id}>
-              <TableCell className="font-medium">
-                {index + 1 + (currentPage - 1) * USERS_PER_PAGE}
-              </TableCell>
-              <TableCell>{user.username}</TableCell>
-              <TableCell className="text-right font-semibold">
-                ${user.moneyWasted}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+    <div className="mx-5 mt-10">
+      <div className="rounded-lg">
+      <h1 className="text-center font-semibold text-3xl mb-7">LeaderBoard</h1>
+      <h2 className="text-lg font-semibold">Recent Investors</h2>
+      <p className="text-sm text-zinc-400">Top money wasters this month</p>
+      {/* Leaderboard Cards */}
+      <div className="mt-4 space-y-2 border dark:shadow-none rounded-lg p-2 shadow-sm shadow-zinc-400">
+        {paginatedUsers.map((user) => (
+          <div key={user.id} className="flex items-center justify-between p-2 rounded-lg">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 dark:bg-zinc-900 bg-zinc-100 border rounded-full flex items-center justify-center text-xs font-bold">
+                {user.username.charAt(0).toUpperCase()}
+              </div>
+              <div>
+                <p className="font-semibold">{user.username}</p>
+                <p className="text-sm text-zinc-400">user@email.com</p>
+              </div>
+            </div>
+            <p className="text-green-500 font-semibold text-sm">-${user.moneyWasted.toLocaleString()}</p>
+          </div>
+        ))}
+      </div>
 
       {/* Pagination */}
       <Pagination className="mt-4">
@@ -66,7 +52,6 @@ export default function LeaderBoard() {
             <PaginationPrevious
               href="#"
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            //   disabled={currentPage === 1}
             />
           </PaginationItem>
 
@@ -86,11 +71,11 @@ export default function LeaderBoard() {
             <PaginationNext
               href="#"
               onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-            //   disabled={currentPage === totalPages}
             />
           </PaginationItem>
         </PaginationContent>
       </Pagination>
+    </div>
     </div>
   );
 }

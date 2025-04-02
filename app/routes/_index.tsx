@@ -1,5 +1,4 @@
 import type { MetaFunction } from "@remix-run/node";
-import HallOfFame from "~/components/hallOfFame";
 import Component from "~/components/mainChart";
 import Payments from "~/components/payments";
 import { Separator } from "~/components/ui/separator";
@@ -23,7 +22,6 @@ export default function Index() {
       <Component />
       <Separator className="my-8 bg-transparent" />
       <Payments /> 
-      <HallOfFame />
     </>
   );
 }
