@@ -224,8 +224,8 @@ export default function Component() {
             <YAxis
               tickLine={false}
               axisLine={false}
-              tickMargin={8}
-              tickCount={4}
+              tickMargin={10}
+              tickCount={5}
               tickFormatter={(value) => {
                 return value.toLocaleString("en-US", {
                   style: "currency",

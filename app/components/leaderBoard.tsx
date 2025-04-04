@@ -1,81 +1,46 @@
-import { useState } from "react";
-import { fakeUsers } from "../shared/fakeDB";
-
 import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "~/components/ui/pagination";
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "~/components/ui/table";
 
-const USERS_PER_PAGE = 10;
+export const fakeUsers = [
+    { id: "USR001", date: "2025-04-04", country: "USA", plans: ["Broke Rookie"], method: "Credit Card", amount: 99.99 },
+    { id: "USR002", date: "2025-04-03", country: "UK", plans: ["Regretful Spender"], method: "PayPal", amount: 999.99 },
+    { id: "USR003", date: "2025-04-02", country: "India", plans: ["Financial Acrobat", "Broke Rookie"], method: "Crypto", amount: 9999.99 },
+    { id: "USR004", date: "2025-04-01", country: "Germany", plans: ["Bankruptcy Enthusiast"], method: "Wire Transfer", amount: 99999.99 },
+    { id: "USR005", date: "2025-03-31", country: "Canada", plans: ["Financial Frenzy", "Regretful Spender"], method: "Debit Card", amount: 999999.99 },
+    { id: "USR006", date: "2025-03-30", country: "Japan", plans: ["Custom Plan"], method: "Cash", amount: 0 },
+];
 
 export default function LeaderBoard() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(fakeUsers.length / USERS_PER_PAGE);
-
-  const paginatedUsers = fakeUsers
-    .slice()
-    .sort((a, b) => b.moneyWasted - a.moneyWasted)
-    .slice((currentPage - 1) * USERS_PER_PAGE, currentPage * USERS_PER_PAGE);
-
-  return (
-    <div className="mx-5 mt-10">
-      <div className="rounded-lg">
-      <h1 className="text-center font-semibold text-3xl mb-7">LeaderBoard</h1>
-      <h2 className="text-lg font-semibold">Recent Investors</h2>
-      <p className="text-sm text-zinc-400">Top money wasters this month</p>
-      {/* Leaderboard Cards */}
-      <div className="mt-4 space-y-2 border dark:shadow-none rounded-lg p-2 shadow-sm shadow-zinc-400">
-        {paginatedUsers.map((user) => (
-          <div key={user.id} className="flex items-center justify-between p-2 rounded-lg">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 dark:bg-zinc-900 bg-zinc-100 border rounded-full flex items-center justify-center text-xs font-bold">
-                {user.username.charAt(0).toUpperCase()}
-              </div>
-              <div>
-                <p className="font-semibold">{user.username}</p>
-                <p className="text-sm text-zinc-400">user@email.com</p>
-              </div>
-            </div>
-            <p className="text-green-500 font-semibold text-sm">-${user.moneyWasted.toLocaleString()}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* Pagination */}
-      <Pagination className="mt-4">
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious
-              href="#"
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            />
-          </PaginationItem>
-
-          {[...Array(totalPages)].map((_, index) => (
-            <PaginationItem key={index}>
-              <PaginationLink
-                href="#"
-                onClick={() => setCurrentPage(index + 1)}
-                className={currentPage === index + 1 ? "font-bold" : ""}
-              >
-                {index + 1}
-              </PaginationLink>
-            </PaginationItem>
-          ))}
-
-          <PaginationItem>
-            <PaginationNext
-              href="#"
-              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-            />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
-    </div>
-    </div>
-  );
+    return (
+        <Table>
+            <TableHeader>
+                <TableRow>
+                    <TableHead className="w-[100px]">UserID</TableHead>
+                    <TableHead>Date</TableHead>
+                    <TableHead>Country</TableHead>
+                    <TableHead>Plans</TableHead>
+                    <TableHead>Method</TableHead>
+                    <TableHead className="text-right">Amount</TableHead>
+                </TableRow>
+            </TableHeader>
+            <TableBody>
+                {fakeUsers.map((user, index) => (
+                    <TableRow key={index}>
+                        <TableCell className="font-medium">{user.id}</TableCell>
+                        <TableCell>{user.date}</TableCell>
+                        <TableCell>{user.country}</TableCell>
+                        <TableCell>{user.plans.join(", ")}</TableCell>
+                        <TableCell>{user.method}</TableCell>
+                        <TableCell className="text-right">${user.amount.toFixed(2)}</TableCell>
+                    </TableRow>
+                ))}
+            </TableBody>
+        </Table>
+    );
 }

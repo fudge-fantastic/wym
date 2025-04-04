@@ -1,4 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
+import LeaderboardSection from "~/components/LeaderboardSection";
 import Component from "~/components/mainChart";
 import Payments from "~/components/payments";
 import { Separator } from "~/components/ui/separator";
@@ -21,7 +22,8 @@ export default function Index() {
       </div>
       <Component />
       <Separator className="my-8 bg-transparent" />
-      <Payments /> 
+      <Payments />
+      <LeaderboardSection />
     </>
   );
 }
