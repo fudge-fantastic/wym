@@ -8,8 +8,8 @@ export default function NavBar() {
         <>
             <div className="mx-5 my-3">
                 <div className="flex justify-between items-center">
-                    <h3 className="font-semibold"><Link to="/">_wasteyourmoney</Link></h3>
-                    <div className="text-sm font-semibold flex gap-6 items-center">
+                    <h3 className="font-semibold md:text-base text-sm"><Link to="/">_wasteyourmoney</Link></h3>
+                    <div className="hidden md:flex text-sm font-semibold gap-6 items-center">
                         <Link className={cssLink} to="#pricing">Pricing</Link>
                         <Link className={cssLink} to="#lederboard">Leaderboard</Link>
                         <Link className={cssLink} to="#about">About Us</Link>

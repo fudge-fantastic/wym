@@ -16,8 +16,8 @@ export default function Index() {
     <>
       <div className="mx-5">
         <div className="text-left flex flex-col gap-1 my-6 md:w-1/2">
-          <h1 className="text-3xl font-bold">Waste Your Money</h1>
-          <p className="ml-0.5 tracking-tight">We don’t judge. Whether you’re spending to flex, to fill a void, or just because you can, this is your playground. No budgets. No second thoughts. Just you, your card, and the quiet realization that money was never meant to be saved.</p>
+          <h1 className="md:text-3xl text-2xl font-bold md:text-left text-center">Waste Your Money</h1>
+          <p className="ml-0.5 tracking-tight md:text-base text-sm md:text-left text-center">We don’t judge. Whether you’re spending to flex, to fill a void, or just because you can, this is your playground. No budgets. No second thoughts. Just you, your card, and the quiet realization that money was never meant to be saved.</p>
         </div>
       </div>
       <Component />

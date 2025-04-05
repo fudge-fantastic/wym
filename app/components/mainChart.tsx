@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis} from "recharts"
-
+import { fakeUsers } from "~/components/leaderBoard";
 import {
   Card,
   CardContent,
@@ -27,14 +27,14 @@ import {
 } from "~/components/ui/select"
 const chartData = [
   { date: "2024-04-01", money: 222},
-  { date: "2024-04-02", money: 97},
+  { date: "2024-04-02", money: 250},
   { date: "2024-04-03", money: 167},
   { date: "2024-04-04", money: 242},
   { date: "2024-04-05", money: 373},
   { date: "2024-04-06", money: 301},
   { date: "2024-04-07", money: 245},
   { date: "2024-04-08", money: 409},
-  { date: "2024-04-09", money: 59},
+  { date: "2024-04-09", money: 659},
   { date: "2024-04-10", money: 261},
   { date: "2024-04-11", money: 327},
   { date: "2024-04-12", money: 292},
@@ -45,13 +45,13 @@ const chartData = [
   { date: "2024-04-17", money: 446},
   { date: "2024-04-18", money: 364},
   { date: "2024-04-19", money: 243},
-  { date: "2024-04-20", money: 89},
+  { date: "2024-04-20", money: 589},
   { date: "2024-04-21", money: 137},
   { date: "2024-04-22", money: 224},
   { date: "2024-04-23", money: 138},
   { date: "2024-04-24", money: 387},
   { date: "2024-04-25", money: 215},
-  { date: "2024-04-26", money: 75},
+  { date: "2024-04-26", money: 475},
   { date: "2024-04-27", money: 383},
   { date: "2024-04-28", money: 122},
   { date: "2024-04-29", money: 315},
@@ -70,28 +70,28 @@ const chartData = [
   { date: "2024-05-12", money: 197},
   { date: "2024-05-13", money: 197},
   { date: "2024-05-14", money: 448},
-  { date: "2024-05-15", money: 473},
+  { date: "2024-05-15", money: 999},
   { date: "2024-05-16", money: 338},
   { date: "2024-05-17", money: 499},
   { date: "2024-05-18", money: 315},
   { date: "2024-05-19", money: 235},
   { date: "2024-05-20", money: 177},
-  { date: "2024-05-21", money: 82},
-  { date: "2024-05-22", money: 81},
+  { date: "2024-05-21", money: 682},
+  { date: "2024-05-22", money: 781},
   { date: "2024-05-23", money: 252},
   { date: "2024-05-24", money: 294},
   { date: "2024-05-25", money: 201},
   { date: "2024-05-26", money: 213},
   { date: "2024-05-27", money: 420},
   { date: "2024-05-28", money: 233},
-  { date: "2024-05-29", money: 78},
+  { date: "2024-05-29", money: 878},
   { date: "2024-05-30", money: 340},
   { date: "2024-05-31", money: 178},
   { date: "2024-06-01", money: 178},
   { date: "2024-06-02", money: 470},
   { date: "2024-06-03", money: 103},
   { date: "2024-06-04", money: 439},
-  { date: "2024-06-05", money: 88},
+  { date: "2024-06-05", money: 588},
   { date: "2024-06-06", money: 294},
   { date: "2024-06-07", money: 323},
   { date: "2024-06-08", money: 385},
@@ -114,15 +114,12 @@ const chartData = [
   { date: "2024-06-25", money: 141},
   { date: "2024-06-26", money: 434},
   { date: "2024-06-27", money: 448},
-  { date: "2024-06-28", money: 149},
+  { date: "2024-06-28", money: 999},
   { date: "2024-06-29", money: 103},
   { date: "2024-06-30", money: 446},
 ]
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
   money: {
     label: "Money",
     color: "hsl(var(--chart-1))",
@@ -146,12 +143,14 @@ export default function Component() {
     return date >= startDate
   })
 
+  const totalAmount = fakeUsers.reduce((sum, user) => sum + user.amount, 0);
+  
   return (
     <Card className="mx-5">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-4 sm:flex-row">
         <div className="grid flex-1 gap-1 text-center sm:text-left">
-          <CardTitle>Total money wasted so far</CardTitle>
-          <CardDescription>
+          <CardTitle className="md:text-base text-sm">Total money wasted so far: <span className="font-bold dark:text-green-400 text-green-500 tracking-wide">${totalAmount.toLocaleString()}</span></CardTitle>
+          <CardDescription className="md:text-sm text-xs">
             Showing total money wasted for the last 3 months
           </CardDescription>
         </div>
@@ -211,7 +210,7 @@ export default function Component() {
               dataKey="date"
               tickLine={false}
               axisLine={false}
-              tickMargin={8}
+              tickMargin={10}
               minTickGap={32}
               tickFormatter={(value) => {
                 const date = new Date(value)
@@ -224,7 +223,7 @@ export default function Component() {
             <YAxis
               tickLine={false}
               axisLine={false}
-              tickMargin={10}
+              tickMargin={-3}
               tickCount={5}
               tickFormatter={(value) => {
                 return value.toLocaleString("en-US", {
