@@ -8,4 +8,4 @@
 - email (optional, but might need for authentication)
 - password (optional, but might need for authentication)
 - country (optional)
-- date of purchase
+- date of purchase# wym
