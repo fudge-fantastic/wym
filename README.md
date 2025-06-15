@@ -1,4 +1,4 @@
-# _wasteyourmoney
+# _wym_
 
 ## Things needed in the DB:
 

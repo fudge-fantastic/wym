@@ -2,6 +2,7 @@ import { HiCurrencyDollar } from "react-icons/hi2";
 import { BiSolidBank } from "react-icons/bi";
 import { GiMoneyStack, GiTakeMyMoney } from "react-icons/gi";
 import { BsFillSafe2Fill, BsCreditCard2FrontFill } from "react-icons/bs";
+import PayButton from "./PayButton";
 const cards = [
   {
     title: "Broke Rookie", 
@@ -126,7 +127,7 @@ export default function Payments() {
                 ))}
               </ul>
               <button className="mt-6 py-2 px-4 bg-zinc-200 rounded hover:bg-zinc-300 dark:bg-zinc-900 dark:hover:bg-zinc-800 transition-colors font-semibold text-sm">
-                Get wasted!
+                <PayButton />
               </button>
 
               {LogoIcon && (
